@@ -19,14 +19,14 @@ class Twitter < Kris::Plugin
       html = Nokogiri::HTML(open(url).read)
       tweet = html.search("item/title")[cnt]
       if !tweet.nil?
-        twit = "@#{tweet.content}"
+        twit = "@#{tweet.content}".gsub(/[\n\r]/,'')
         #twit = "@#{user}: #{twit.content} (#{date.content}) #{URI.short_uri(link)}"
       else
         twit = html.search("h1.logged-out").first
         if twit.nil?
           twit = "だれそれ"
         else
-          twit = twit.inner_text
+          twit = twit.inner_text.gsub(/[\n\r]/,' ')
         end
       end
       notice(message.to, twit)
