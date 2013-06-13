@@ -15,7 +15,7 @@ class Tweet < Kris::Plugin
       user = $2
       cnt = $3.to_i || 0
 
-      twit = "#{@user}: #{Twitter.user_timeline(user)[cnt].text}"
+      twit = "#{@user}: #{Twitter.user_timeline(user)[cnt].text.gsub(/\n/, ' ')}"
       notice(message.to, twit)
     end
 
