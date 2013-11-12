@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>IRC Log</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto -60px;
+      }
+      #push,
+      #footer {
+        height: 60px;
+      }
+      #footer {
+        background-color: #f5f5f5;
+      }
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+      .container {
+        width: auto;
+        max-width: 680px;
+      }
+      .container .credit {
+        margin: 20px 0;
+      }
+      .row {
+        border-style: solid;
+        border-color: #CCC;
+        border-width: 0px 0px 1px 0px;
+        margin-bottom: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="container">
+        <div class="page-header">
+          <h1>IRC LogView</h1>
+        </div>
+      </div>
+      <div class="container">
+        <ul class="pager">
+          <li><a href="/<%= @page - 1 %>">Previous</a></li>
+          <li><a href="/<%= @page + 1 %>">Next</a></li>
+        </ul>
+      </div>
+      <div class="container">
+      <% @logs.each do |log| %>
+        <div class="row">
+          <div class="col-xs-2"><%= log[3] %></div>
+          <div class="col-xs-7"><%= log[4] %></div>
+          <div class="col-xs-3"><%= Time.parse(log[6]).strftime("%F %T") %></div>
+        </div>
+      <% end %>
+      </div>
+      <div class="container">
+        <ul class="pager">
+          <li><a href="/<%= @page - 1 %>">Previous</a></li>
+          <li><a href="/<%= @page + 1 %>">Next</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
